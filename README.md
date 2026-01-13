@@ -35,11 +35,12 @@ Follow these steps to run the project locally on your machine.
 
 2. **Navigate to the project directory:**
    ```sh
-  cd scientific-calculator
+   cd scientific-calculator
    ```
 
 3. **Run the App:**
    - Simply open `index.html` in your browser.
+   
 
 ## 📂 Project Structure
 
@@ -59,7 +60,8 @@ scientific-calculator/
 ```
 
 ## 📬 Contact
-**Aditya Pandey** - **GitHub**: [@iamAditya-Pandey](https://github.com/iamAditya-Pandey)  
+**Aditya Pandey** 
+- **GitHub**: [@iamAditya-Pandey](https://github.com/iamAditya-Pandey)  
 - **Email**: pandeyaditya19012006@gmail.com
 - **Linkedin**: [Aditya Pandey](https://www.linkedin.com/in/aditya-pandey-23309a373/)
 ---
