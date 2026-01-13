@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta name="description" content="Scientific Calculator" />
+    <meta name="author" content="Aditya Pandey" />
+    <meta name="keywords" content="aditya, pandey, scientific calculator, calculator, javascript project" />
+
+    <meta property="og:title" content="Aditya Pandey | Calculator" />
+    <meta property="og:description" content="Scientific Calculator built by Aditya Pandey" />
+    <meta property="og:type" content="Calculator">
+
+    <title>Aditya Pandey | Modern Calculator</title>
+    <link rel="icon" type="image/png" href="images/favicon.png" />
+
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.js"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+    <script src="https://kit.fontawesome.com/607f62eb6e.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="./css/styles.min.css?version=1">
+    <script src="./js/scripts.min.js?version=1"></script>
+
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #0f2027 0%, #203a43 50%, #2c5364 100%); /* Dark Modern Gradient */
+            min-height: 100vh;
+            color: white;
+        }
+
+        /* The Glass Calculator Body */
+        .design {
+            background: rgba(255, 255, 255, 0.05) !important; /* Glassy background */
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            border-radius: 25px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+            padding-bottom: 30px;
+        }
+
+        /* Title Area */
+        h1 {
+            color: #ffffff !important;
+            font-weight: 600;
+            letter-spacing: 1px;
+            margin-top: 15px !important;
+            font-size: 2.2rem;
+            text-shadow: 0 0 10px rgba(0, 255, 255, 0.3);
+        }
+
+        .hrefWithoutDecoration {
+            text-decoration: none !important;
+        }
+
+        /* The Screen/Display */
+        #history, #expression1 {
+            background: rgba(0, 0, 0, 0.6) !important;
+            color: #00ffcc !important; /* Neon Cyan Text */
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            font-family: 'JetBrains Mono', monospace; /* Coding font for numbers */
+            letter-spacing: 1px;
+            font-weight: 500;
+        }
+        #history {
+            color: #aaaaaa !important; /* Dimmed history */
+            font-size: 0.9rem;
+        }
+        #expression1 {
+            font-size: 1.8rem;
+        }
+
+        /* Buttons */
+        input[type="button"] {
+            border-radius: 15px !important;
+            font-family: 'Poppins', sans-serif;
+            font-weight: 500;
+            border: none;
+            transition: all 0.2s ease;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.2);
+            color: white !important;
+        }
+
+        /* Number Buttons */
+        .onhoverlight {
+            background: rgba(255, 255, 255, 0.1) !important;
+        }
+        .onhoverlight:hover {
+            background: rgba(255, 255, 255, 0.2) !important;
+            transform: translateY(-2px);
+        }
+
+        /* Function Buttons (sin, cos, etc) */
+        .onhoverdark {
+            background: rgba(0, 0, 0, 0.3) !important;
+            color: #a0a0a0 !important;
+        }
+        .onhoverdark:hover {
+            background: rgba(0, 0, 0, 0.5) !important;
+            color: white !important;
+        }
+
+        /* The Equals Button (=) - Make it Pop */
+        .btn-color-blue {
+            background: linear-gradient(45deg, #00b09b, #96c93d) !important; /* Gradient Green/Blue */
+            color: #000 !important;
+            font-weight: bold;
+            box-shadow: 0 0 15px rgba(0, 255, 150, 0.4);
+        }
+
+        /* Clear and Backspace */
+        input[value="C"], input[value="⌫"] {
+            background: rgba(255, 50, 50, 0.2) !important;
+            color: #ff6b6b !important;
+        }
+
+        /* Button Click Effect */
+        input[type="button"]:active {
+            transform: scale(0.95);
+            box-shadow: none;
+        }
+
+        /* Footer */
+        .copyright a {
+            color: rgba(255, 255, 255, 0.6) !important;
+            text-decoration: none;
+        }
+        .copyright a:hover {
+            color: white !important;
+        }
+    </style>
+</head>
+
+<body data-gr-c-s-loaded="true">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-2"></div>
+            <div class="col-lg-8">
+                <div class="col-lg-offset shadow design mt-80 mb-55">
+                    <div class="row">
+                        <div class="col px-2 text-center newblue">
+                            <a class="hrefWithoutDecoration" href="/">
+                                <h1>Scientific <i class="fa fa-atom" style="font-size:25px; color:#00ffcc;"></i> Calc</h1>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col mt-3 mb-2 mx-3">
+                            <textarea id="history" rows="4" style="text-align:right " readonly
+                                class="full-width p-3 round2 adiow"></textarea>
+                        </div>
+                    </div>
+                    <div class="row mb-3">
+                        <div class="col-lg-12">
+                            <div class="row">
+                                <div class="col mx-3 ">
+                                    <input type="text" readonly class="full-width round2 py-2 px-4 dDoNo"
+                                        style="text-align: right" id="expression1">
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col pl-3" id="content-desktop">
+                                    <div class="row pt-2"><div class="col"><input type="button" value="Ans" class="full-width round onhoverdark" onclick="answer()" /></div></div>
+                                    <div class="row pt-1"><div class="col"><input type="button" value="sin" class="full-width round onhoverdark" onclick="sinfn()" /></div></div>
+                                    <div class="row pt-1"><div class="col"><input type="button" value="cos" class="full-width round onhoverdark" onclick="cosfn()" /></div></div>
+                                    <div class="row pt-1"><div class="col"><input type="button" value="tan" class="full-width round onhoverdark" onclick="tanfn()" /></div></div>
+                                    <div class="row pt-1"><div class="col"><input type="button" value="EXP" class="full-width round onhoverdark" onclick="exp()" /></div></div>
+                                </div>
+                                <div class="col pl-3" id="content-desktop">
+                                    <div class="row pt-2"><div class="col"><input type="button" value="%" class="full-width round onhoverdark" onclick="percentage()" /></div></div>
+                                    <div class="row pt-1"><div class="col"><input type="button" value="π" class="full-width round onhoverdark" onclick="pi()" /></div></div>
+                                    <div class="row pt-1"><div class="col"><input type="button" value="e" class="full-width round onhoverdark" onclick="e()" /></div></div>
+                                    <div class="row pt-1"><div class="col"><input type="button" value="ln" class="full-width round onhoverdark" onclick="lnfn()" /></div></div>
+                                    <div class="row pt-1"><div class="col"><input type="button" value="log" class="full-width round onhoverdark" onclick="logfn()" /></div></div>
+                                </div>
+                                <div class="col-md pl-3" id="content-desktop">
+                                    <div class="row pt-2"><div class="col"><input type="button" value="!" class="full-width round onhoverdark" onclick="factorial()" /></div></div>
+                                    <div class="row pt-1"><div class="col"><input type="button" value="√" class="full-width round onhoverdark" onclick="squareroot()" /></div></div>
+                                    <div class="row pt-1"><div class="col"><input type="button" value="x&#8319" class="full-width round onhoverdark" onclick="power()" /></div></div>
+                                    <div class="row pt-1"><div class="col"><input type="button" value="x&#178" class="full-width round onhoverdark" onclick="square()" /></div></div>
+                                    <div class="row pt-1"><div class="col"><input type="button" value="|x|" class="full-width round onhoverdark" onclick="abs()" /></div></div>
+                                </div>
+                                <div class="col pl-3">
+                                    <div id="content-mobile">
+                                        <div class="row pt-2"><div class="col"><input type="button" value="log" class="full-width round onhoverdark" onclick="logfn()" /></div></div>
+                                        <div class="row pt-1"><div class="col"><input type="button" value="ln" class="full-width round onhoverdark" onclick="lnfn()" /></div></div>
+                                        <div class="row pt-1"><div class="col"><input type="button" value="|x|" class="full-width round onhoverdark" onclick="abs()" /></div></div>
+                                        <div class="row pt-1"><div class="col"><input type="button" value="(" class="full-width round onhoverdark" onclick="display1('(')" /></div></div>
+                                    </div>
+                                    <div id="content-desktop">
+                                        <div class="row pt-2"><div class="col"><input type="button" value="(" class="full-width round onhoverdark" onclick="display1('(')" /></div></div>
+                                    </div>
+                                    <div class="row pt-1"><div class="col"><input type="button" value="7" class="full-width round onhoverlight" onclick="display1('7')" /></div></div>
+                                    <div class="row pt-1"><div class="col"><input type="button" value="4" class="full-width round onhoverlight" onclick="display1('4')" /></div></div>
+                                    <div class="row pt-1"><div class="col"><input type="button" value="1" class="full-width round onhoverlight" onclick="display1('1')" /></div></div>
+                                    <div class="row pt-1"><div class="col"><input type="button" value="0" class="full-width round onhoverlight" onclick="display1('0')" /></div></div>
+                                </div>
+                                <div class="col px-3">
+                                    <div id="content-mobile">
+                                        <div class="row pt-2"><div class="col"><input type="button" value="Ans" class="full-width round onhoverdark" onclick="answer()" /></div></div>
+                                        <div class="row pt-1"><div class="col"><input type="button" value="sin" class="full-width round onhoverdark" onclick="sinfn()" /></div></div>
+                                        <div class="row pt-1"><div class="col"><input type="button" value="x&#8319" class="full-width round onhoverdark" onclick="power()" /></div></div>
+                                        <div class="row pt-1"><div class="col"><input type="button" value=")" class="full-width round onhoverdark" onclick="display1(')')" /></div></div>
+                                    </div>
+                                    <div id="content-desktop">
+                                        <div class="row pt-2"><div class="col"><input type="button" value=")" class="full-width round onhoverdark" onclick="display1(')')" /></div></div>
+                                    </div>
+                                    <div class="row pt-1"><div class="col"><input type="button" value="8" class="full-width round onhoverlight" onclick="display1('8')" /></div></div>
+                                    <div class="row pt-1"><div class="col"><input type="button" value="5" class="full-width round onhoverlight" onclick="display1('5')" /></div></div>
+                                    <div class="row pt-1"><div class="col"><input type="button" value="2" class="full-width round onhoverlight" onclick="display1('2')" /></div></div>
+                                    <div class="row pt-1"><div class="col"><input type="button" value="." class="full-width round onhoverlight" onclick="display1('.')" /></div></div>
+                                </div>
+                                <div class="col">
+                                    <div class="row pt-2"><div class="col"><input type="button" value="C" class="full-width round onhoverdark" onclick="allclr()" /></div></div>
+                                    <div id="content-mobile">
+                                        <div class="row pt-1"><div class="col"><input type="button" value="cos" class="full-width round onhoverdark" onclick="cosfn()" /></div></div>
+                                        <div class="row pt-1"><div class="col"><input type="button" value="√" class="full-width round onhoverdark" onclick="squareroot()" /></div></div>
+                                        <div class="row pt-1"><div class="col"><input type="button" value="π" class="full-width round onhoverdark" onclick="pi()" /></div></div>
+                                    </div>
+                                    <div class="row pt-1"><div class="col"><input type="button" value="9" class="full-width round onhoverlight" onclick="display1('9')" /></div></div>
+                                    <div class="row pt-1"><div class="col"><input type="button" value="6" class="full-width round onhoverlight" onclick="display1('6')" /></div></div>
+                                    <div class="row pt-1"><div class="col"><input type="button" value="3" class="full-width round onhoverlight" onclick="display1('3')" /></div></div>
+                                    <div class="row pt-1"><div class="col"><input type="button" value="=" class="full-width round btn-color-blue" onclick="runtwofunction()" /></div></div>
+                                </div>
+                                <div class="col px-3">
+                                    <div class="row pt-2"><div class="col"><input type="button" value="⌫" class="full-width round onhoverdark" onclick="back()" /></div></div>
+                                    <div id="content-mobile">
+                                        <div class="row pt-1"><div class="col"><input type="button" value="tan" class="full-width round onhoverdark" onclick="tanfn()" /></div></div>
+                                        <div class="row pt-1"><div class="col"><input type="button" value="!" class="full-width round onhoverdark" onclick="factorial()" /></div></div>
+                                        <div class="row pt-1"><div class="col"><input type="button" value="e" class="full-width round onhoverdark" onclick="e()" /></div></div>
+                                    </div>
+                                    <div class="row pt-1"><div class="col"><input type="button" value="÷" class="full-width round onhoverdark" onclick="display1('/')" /></div></div>
+                                    <div class="row pt-1"><div class="col"><input type="button" value="×" class="full-width round onhoverdark" onclick="multiply()" /></div></div>
+                                    <div class="row pt-1"><div class="col"><input type="button" value="-" class="full-width round onhoverdark" onclick="display1('-')" /></div></div>
+                                    <div class="row pt-1"><div class="col"><input type="button" value="+" class="full-width round onhoverdark" onclick="display1('+')" /></div></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div id="content-mobile">
+        <div class="copyright py-4 text-center">
+            <div class="container">
+                <small>
+                    <a target="_blank" href="https://github.com/iamAditya-Pandey">Copyright © Aditya Pandey 2026</a>
+                </small>
+            </div>
+        </div>
+    </div>
+    <div id="content-desktop">
+        <div class="copyright py-4 text-center">
+            <div class="container">
+                <a target="_blank" href="https://github.com/iamAditya-Pandey">Copyright © Aditya Pandey 2026</a>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>
