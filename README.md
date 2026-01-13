@@ -1,4 +1,6 @@
-# 📱 Scientific Calculator 
+# 📱 Scientific Calculator
+
+[![Live Demo](https://img.shields.io/badge/🚀_Live_Demo-View_App-2ea44f?style=for-the-badge)](https://iamAditya-Pandey.github.io/scientific-calculator/)
 
 A robust, web-based scientific calculator featuring intelligent expression parsing, implicit multiplication, and stack-based error handling. The interface is built using a sleek, modern **Dark Glassmorphism UI** for a visually striking user experience.
 
